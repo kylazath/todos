@@ -1,0 +1,370 @@
+$font-stack: Montserrat, sans-serif;
+$color-main-first: rgba(250, 51, 80, 1);
+$color-main-second: rgba(250, 59, 74, 1);
+$color-main-third: rgba(248, 73, 63, 1);
+$color-main-fourth: rgba(246, 84, 55, 1);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: rgb(250, 51, 80);
+  background: linear-gradient(
+    35deg,
+    rgba(250, 51, 80, 1) 25%,
+    rgba(250, 59, 74, 1) 50%,
+    rgba(248, 73, 63, 1) 75%,
+    rgba(246, 84, 55, 1) 100%
+  );
+
+  font-family: $font-stack;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: white;
+  font-size: 4.2rem;
+}
+
+.wrapper {
+  position: relative;
+  width: 65%;
+  height: 80%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+
+  padding: 2%;
+
+  background-color: white;
+  border: 3px solid $color-main-first;
+  border-radius: 10px;
+
+  .list-title {
+    width: 100%;
+    padding-left: 35%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  %col {
+    height: 90%;
+    border-radius: 3px;
+  }
+
+  .buttons {
+    position: relative;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+
+    .add {
+      position: absolute;
+      bottom: 0rem;
+      right: 1rem;
+      z-index: 2;
+      width: 4rem;
+      height: 4rem;
+
+      background-color: $color-main-first;
+      color: white;
+      font-size: 3.6rem;
+      text-align: center;
+      border-radius: 50%;
+      border: none;
+      transition: transform 0.125s, background-color 1s;
+
+      &:hover {
+        transform: rotate(90deg);
+        background-color: $color-main-second;
+        cursor: pointer;
+      }
+
+      &-sign {
+        position: absolute;
+        height: 4.75rem;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__list {
+      position: relative;
+      width: 30%;
+      text-align: right;
+    }
+
+    &__todo {
+      position: relative;
+      width: 65%;
+      text-align: right;
+    }
+  }
+
+  .lists {
+    @extend %col;
+    width: 30%;
+    position: relative;
+    overflow: auto;
+    border-right: 3px solid $color-main-first;
+
+    .list {
+      min-height: 6rem;
+      height: 20%;
+      width: 90%;
+      max-height: 7rem;
+      padding: 2rem 1rem;
+      border-bottom: 2px solid $color-main-first;
+      cursor: pointer;
+
+      display: flex;
+
+      &__remove {
+        margin-left: auto;
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        width: 10%;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        transition: transform 0.1s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.25);
+        }
+      }
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.0125);
+      }
+
+      &__name {
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+    }
+  }
+
+  .todos {
+    @extend %col;
+    width: 65%;
+    padding: 0 4rem;
+    overflow: auto;
+    position: relative;
+
+    .todo {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      cursor: default;
+      border-radius: 3px;
+      padding: 1rem;
+      min-height: 10rem;
+      margin-top: 1.5rem;
+      border-bottom: 3px solid $color-main-first;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.015625);
+      }
+
+      &__name {
+        margin-right: auto;
+        font-size: 2rem;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      &__prio {
+        width: 10%;
+        font-size: 2.4rem;
+        font-weight: 700;
+        text-align: center;
+
+        &.low {
+          color: green;
+        }
+
+        &.medium {
+          color: orange;
+        }
+
+        &.high {
+          color: red;
+        }
+      }
+
+      &__done {
+        width: 10%;
+        display: flex;
+        justify-content: center;
+
+        &-box {
+          display: block;
+          height: 1.75rem;
+          width: 1.75rem;
+          background-color: transparent;
+          border: 1px solid black;
+          border-radius: 5px;
+
+          &.done {
+            background-color: $color-main-third;
+
+            &:hover {
+              background-color: white;
+            }
+          }
+
+          &:hover {
+            cursor: pointer;
+            background-color: $color-main-third;
+          }
+        }
+      }
+
+      &__remove {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+        width: 10%;
+        font-size: 1.6rem;
+        font-weight: 700;
+        text-align: center;
+        transition: transform 0.1s;
+
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.25);
+        }
+      }
+
+      &__due-date {
+        width: 100%;
+        font-size: 1.3rem;
+      }
+
+      &__desc {
+        width: 100%;
+        margin-top: 1rem;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+.backdrop.on {
+  visibility: visible;
+  opacity: 1;
+}
+
+.backdrop {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 60vh;
+    width: 25vw;
+    background-color: white;
+    border-radius: 10px;
+
+    .hidden {
+      display: none;
+    }
+
+    & form {
+      margin: 0 auto;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      div {
+        display: flex;
+        text-align: right;
+        width: 95%;
+        font-size: 1.8rem;
+
+        & label {
+          display: block;
+          width: 30%;
+          padding: 0 1rem;
+        }
+
+        & input {
+          padding: 0.5rem 1rem;
+        }
+      }
+
+      div:last-child {
+        display: flex;
+        align-items: flex-start;
+      }
+
+      input,
+      select,
+      textarea {
+        border: 1px solid lightgrey;
+        border-radius: 5px;
+      }
+
+      textarea {
+        padding: 0.5rem;
+      }
+
+      input[type="submit"] {
+        width: 21%;
+        border: none;
+        padding: 1.5rem 1rem;
+        background-color: $color-main-second;
+        color: white;
+        font-size: 2rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        border-radius: 10px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
